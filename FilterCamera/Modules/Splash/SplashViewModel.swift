@@ -1,0 +1,43 @@
+//
+//  SplashViewModel.swift
+//  FilterCamera
+//
+//  Created by binh on 25/04/2026.
+//
+
+import Foundation
+import Combine
+import QuartzCore
+
+final class SplashViewModel: ObservableObject {
+
+    @Published var progress: Double = 0
+    @Published var route: Route?
+
+    private let duration: Double = 2.0
+    private var startTime: Date?
+    private var displayLink: CADisplayLink?
+
+    func start() {
+        startTime = Date()
+
+        displayLink = CADisplayLink(target: self, selector: #selector(update))
+        displayLink?.add(to: .main, forMode: .common)
+    }
+
+    @objc private func update() {
+        guard let startTime else { return }
+
+        let elapsed = Date().timeIntervalSince(startTime)
+        progress = min(elapsed / duration, 1.0)
+
+        if progress >= 1 {
+            displayLink?.invalidate()
+            displayLink = nil
+
+            let isOnboarded = UserDefaultHelper.get(for: .isOnboarded, default: false)
+
+            route = isOnboarded ? .paywall : .onboarding
+        }
+    }
+}
