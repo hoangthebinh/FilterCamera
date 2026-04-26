@@ -19,6 +19,9 @@
 		B7414C5A2F9CFC92009EEFAD /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C592F9CFC92009EEFAD /* UserDefaultHelper.swift */; };
 		B7414C5C2F9D11BD009EEFAD /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C5B2F9D11BD009EEFAD /* PaywallView.swift */; };
 		B7414C5E2F9D182E009EEFAD /* PaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C5D2F9D182E009EEFAD /* PaywallViewModel.swift */; };
+		B7D0D0E22F9DCD2900F3D4C0 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = B7D0D0E12F9DCD2900F3D4C0 /* GoogleMobileAds */; };
+		B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */; };
+		B7D0D0E92F9DDD0C00F3D4C0 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		B7414C592F9CFC92009EEFAD /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		B7414C5B2F9D11BD009EEFAD /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		B7414C5D2F9D182E009EEFAD /* PaywallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewModel.swift; sourceTree = "<group>"; };
+		B7D0D0E32F9DD05300F3D4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
+		B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D0D0E22F9DCD2900F3D4C0 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,7 @@
 		B7414C412F9C7726009EEFAD /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B7D0D0E32F9DD05300F3D4C0 /* Info.plist */,
 				B7414C332F9C763A009EEFAD /* FilterCameraApp.swift */,
 				B7414C4F2F9C7ABF009EEFAD /* AppState.swift */,
 			);
@@ -90,6 +98,8 @@
 		B7414C422F9C7738009EEFAD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B7D0D0E72F9DDCF900F3D4C0 /* Extensions */,
+				B7D0D0E42F9DDC7D00F3D4C0 /* Ads */,
 				B7414C582F9CFC7F009EEFAD /* Storage */,
 			);
 			path = Core;
@@ -179,6 +189,22 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		B7D0D0E42F9DDC7D00F3D4C0 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */,
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
+		B7D0D0E72F9DDCF900F3D4C0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,6 +249,9 @@
 				Base,
 			);
 			mainGroup = B7414C272F9C763A009EEFAD;
+			packageReferences = (
+				B7D0D0E02F9DCD2900F3D4C0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = B7414C312F9C763A009EEFAD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -254,11 +283,13 @@
 				B7414C532F9C8810009EEFAD /* RootView.swift in Sources */,
 				B7414C572F9C9900009EEFAD /* OnboardingViewModel.swift in Sources */,
 				B7414C5E2F9D182E009EEFAD /* PaywallViewModel.swift in Sources */,
+				B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */,
 				B7414C342F9C763A009EEFAD /* FilterCameraApp.swift in Sources */,
 				B7414C4C2F9C7A68009EEFAD /* SplashView.swift in Sources */,
 				B7414C5C2F9D11BD009EEFAD /* PaywallView.swift in Sources */,
 				B7414C4E2F9C7A8D009EEFAD /* SplashViewModel.swift in Sources */,
 				B7414C552F9C9094009EEFAD /* OnboardingView.swift in Sources */,
+				B7D0D0E92F9DDD0C00F3D4C0 /* UIApplication+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +425,7 @@
 				DEVELOPMENT_TEAM = UK95S7YPT5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FilterCamera/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -422,6 +454,7 @@
 				DEVELOPMENT_TEAM = UK95S7YPT5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FilterCamera/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -462,6 +495,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B7D0D0E02F9DCD2900F3D4C0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B7D0D0E12F9DCD2900F3D4C0 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7D0D0E02F9DCD2900F3D4C0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B7414C282F9C763A009EEFAD /* Project object */;
 }

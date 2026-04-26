@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 @main
 struct FilterCameraApp: App {
 
     @StateObject private var appState = AppState()
 
+    init() {
+        Task {
+            _ = await MobileAds.shared.start()
+            InterstitialAdManager.shared.loadAd()
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView()
