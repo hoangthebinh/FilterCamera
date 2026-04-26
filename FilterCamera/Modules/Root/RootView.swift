@@ -21,13 +21,15 @@ struct RootView: View {
             OnboardingView()
 
         case .paywall:
-            Text("Paywall")
+            PaywallView()
 
         case .camera:
             Text("Camera")
 
         case .result:
             Text("Result")
+        case .purchase:
+            PurchaseView()
         }
     }
 }

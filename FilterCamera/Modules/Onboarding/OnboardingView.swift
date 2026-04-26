@@ -13,7 +13,7 @@ struct OnboardingView: View {
 
     private let horizontalPadding: CGFloat = 24
     private let bottomPadding: CGFloat = 40
-    private let titleBottomPadding: CGFloat = 160
+    private let titleBottomPadding: CGFloat = 260
     private let pageIndicatorSpacing: CGFloat = 8
 
     var body: some View {
@@ -38,13 +38,18 @@ struct OnboardingView: View {
     private var footerSection: some View {
         VStack {
             Spacer()
-
             VStack(spacing: 24) {
                 pageIndicator
                 continueButton
             }
             .padding(.horizontal, horizontalPadding)
             .padding(.bottom, bottomPadding)
+            let isNotPremium = UserDefaultHelper.get(for: .isPremium, default: false) == false
+            if isNotPremium {
+                BannerAdView()
+                    .frame(height: 80)
+                    .padding(.bottom, 20)
+            }
         }
     }
 

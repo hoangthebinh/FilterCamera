@@ -15,17 +15,17 @@ final class InterstitialAdManager: NSObject, ObservableObject, FullScreenContent
     private var interstitial: InterstitialAd?
     @Published private(set) var isAdReady = false
     private var isLoading = false
+    private let interstitialAdTestId = "ca-app-pub-3940256099942544/4411468910"
     private var onDismiss: (() -> Void)?
+    
     
     // MARK: - Load Ads
     func loadAd() {
         guard !isLoading, interstitial == nil else { return }
         isLoading = true
         
-        InterstitialAd.load(
-            with: "ca-app-pub-3940256099942544/4411468910",
-            request: Request()
-        ) { [weak self] ad, error in
+        InterstitialAd.load(with: interstitialAdTestId,
+                            request: Request()) { [weak self] ad, error in
             self?.isLoading = false
             
             if let error = error {
@@ -66,10 +66,7 @@ final class InterstitialAdManager: NSObject, ObservableObject, FullScreenContent
         loadAd()
     }
     
-    func ad(
-        _ ad: FullScreenPresentingAd,
-        didFailToPresentFullScreenContentWithError error: Error
-    ) {
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Present Interstitial error:", error.localizedDescription)
         interstitial = nil
         isAdReady = false

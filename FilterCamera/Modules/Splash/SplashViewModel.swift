@@ -41,8 +41,16 @@ final class SplashViewModel: ObservableObject {
             displayLink?.invalidate()
             displayLink = nil
 
+            handleFinishedLoading()
+        }
+    }
+    
+    private func handleFinishedLoading() {
+        let isPremium = UserDefaultHelper.get(for: .isPremium, default: false)
+        if isPremium {
+            route = .camera
+        } else {
             let isOnboarded = UserDefaultHelper.get(for: .isOnboarded, default: false)
-
             route = isOnboarded ? .paywall : .onboarding
         }
     }

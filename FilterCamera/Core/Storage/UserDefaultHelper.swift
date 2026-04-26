@@ -9,6 +9,7 @@ import Foundation
 
 public enum UserDefaultKey: String {
     case isOnboarded
+    case isPremium
 }
 
 final class UserDefaultHelper {

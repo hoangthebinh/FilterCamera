@@ -25,7 +25,7 @@ final class PaywallViewModel: ObservableObject {
         Plan(
             title: "Standard",
             features: ["❌ Remove Ads", "Limited Filters"],
-            info: "Get started with ads"
+            info: "Continue with ads"
         )
     ]
 }

@@ -19,6 +19,11 @@
 		B7414C5A2F9CFC92009EEFAD /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C592F9CFC92009EEFAD /* UserDefaultHelper.swift */; };
 		B7414C5C2F9D11BD009EEFAD /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C5B2F9D11BD009EEFAD /* PaywallView.swift */; };
 		B7414C5E2F9D182E009EEFAD /* PaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C5D2F9D182E009EEFAD /* PaywallViewModel.swift */; };
+		B794A7A12F9E179A009E3AAA /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7A02F9E1795009E3AAA /* BannerAdView.swift */; };
+		B794A7A42F9E22B5009E3AAA /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7A32F9E22B4009E3AAA /* StoreKitManager.swift */; };
+		B794A7A62F9E247C009E3AAA /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7A52F9E2471009E3AAA /* PurchaseView.swift */; };
+		B794A7A92F9E276B009E3AAA /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7A82F9E2764009E3AAA /* PurchaseViewModel.swift */; };
+		B794A7AB2F9E2AC3009E3AAA /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B794A7AA2F9E2AC3009E3AAA /* Products.storekit */; };
 		B7D0D0E22F9DCD2900F3D4C0 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = B7D0D0E12F9DCD2900F3D4C0 /* GoogleMobileAds */; };
 		B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */; };
 		B7D0D0E92F9DDD0C00F3D4C0 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */; };
@@ -38,6 +43,11 @@
 		B7414C592F9CFC92009EEFAD /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		B7414C5B2F9D11BD009EEFAD /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		B7414C5D2F9D182E009EEFAD /* PaywallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewModel.swift; sourceTree = "<group>"; };
+		B794A7A02F9E1795009E3AAA /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		B794A7A32F9E22B4009E3AAA /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		B794A7A52F9E2471009E3AAA /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
+		B794A7A82F9E2764009E3AAA /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
+		B794A7AA2F9E2AC3009E3AAA /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		B7D0D0E32F9DD05300F3D4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 		B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
@@ -98,6 +108,7 @@
 		B7414C422F9C7738009EEFAD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B794A7A22F9E22A0009E3AAA /* IAP */,
 				B7D0D0E72F9DDCF900F3D4C0 /* Extensions */,
 				B7D0D0E42F9DDC7D00F3D4C0 /* Ads */,
 				B7414C582F9CFC7F009EEFAD /* Storage */,
@@ -146,6 +157,7 @@
 		B7414C472F9C7789009EEFAD /* Paywall */ = {
 			isa = PBXGroup;
 			children = (
+				B794A7A72F9E2747009E3AAA /* Purchase */,
 				B7414C5B2F9D11BD009EEFAD /* PaywallView.swift */,
 				B7414C5D2F9D182E009EEFAD /* PaywallViewModel.swift */,
 			);
@@ -189,9 +201,28 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		B794A7A22F9E22A0009E3AAA /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				B794A7A32F9E22B4009E3AAA /* StoreKitManager.swift */,
+				B794A7AA2F9E2AC3009E3AAA /* Products.storekit */,
+			);
+			path = IAP;
+			sourceTree = "<group>";
+		};
+		B794A7A72F9E2747009E3AAA /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				B794A7A52F9E2471009E3AAA /* PurchaseView.swift */,
+				B794A7A82F9E2764009E3AAA /* PurchaseViewModel.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
 		B7D0D0E42F9DDC7D00F3D4C0 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
+				B794A7A02F9E1795009E3AAA /* BannerAdView.swift */,
 				B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */,
 			);
 			path = Ads;
@@ -266,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B794A7AB2F9E2AC3009E3AAA /* Products.storekit in Resources */,
 				B7414C382F9C763B009EEFAD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,16 +312,20 @@
 				B7414C362F9C763A009EEFAD /* ContentView.swift in Sources */,
 				B7414C5A2F9CFC92009EEFAD /* UserDefaultHelper.swift in Sources */,
 				B7414C502F9C7ABF009EEFAD /* AppState.swift in Sources */,
+				B794A7A62F9E247C009E3AAA /* PurchaseView.swift in Sources */,
 				B7414C532F9C8810009EEFAD /* RootView.swift in Sources */,
 				B7414C572F9C9900009EEFAD /* OnboardingViewModel.swift in Sources */,
 				B7414C5E2F9D182E009EEFAD /* PaywallViewModel.swift in Sources */,
 				B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */,
 				B7414C342F9C763A009EEFAD /* FilterCameraApp.swift in Sources */,
 				B7414C4C2F9C7A68009EEFAD /* SplashView.swift in Sources */,
+				B794A7A42F9E22B5009E3AAA /* StoreKitManager.swift in Sources */,
+				B794A7A92F9E276B009E3AAA /* PurchaseViewModel.swift in Sources */,
 				B7414C5C2F9D11BD009EEFAD /* PaywallView.swift in Sources */,
 				B7414C4E2F9C7A8D009EEFAD /* SplashViewModel.swift in Sources */,
 				B7414C552F9C9094009EEFAD /* OnboardingView.swift in Sources */,
 				B7D0D0E92F9DDD0C00F3D4C0 /* UIApplication+Extension.swift in Sources */,
+				B794A7A12F9E179A009E3AAA /* BannerAdView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

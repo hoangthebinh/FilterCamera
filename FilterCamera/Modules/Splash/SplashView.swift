@@ -32,6 +32,10 @@ struct SplashView: View {
         .onReceive(viewModel.$route.compactMap { $0 }) { route in
             pendingRoute = route
             showAdIfReady()
+            let isPremium = UserDefaultHelper.get(for: .isPremium, default: false)
+            if isPremium {
+                appState.route = route
+            }
         }
         .onReceive(adManager.$isAdReady.removeDuplicates()) { isAdReady in
             guard isAdReady else {

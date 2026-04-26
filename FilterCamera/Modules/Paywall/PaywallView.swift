@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PaywallView: View {
+    @EnvironmentObject var appState: AppState
     @StateObject private var viewModel = PaywallViewModel()
 
     private let horizontalPadding: CGFloat = 40
@@ -100,7 +101,12 @@ struct PaywallView: View {
     }
 
     private func handleContinueTapped() {
-        print("Selected: \(viewModel.selectedIndex)")
+        let index = viewModel.selectedIndex
+        if index == 0 {
+            appState.route = .purchase
+        } else {
+            appState.route = .camera
+        }
     }
 }
 

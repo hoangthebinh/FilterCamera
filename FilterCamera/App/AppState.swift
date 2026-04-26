@@ -15,6 +15,7 @@ enum Route {
     case splash
     case onboarding
     case paywall
+    case purchase
     case camera
     case result
 }
