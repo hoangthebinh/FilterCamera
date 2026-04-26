@@ -10,7 +10,6 @@
 		B7414C342F9C763A009EEFAD /* FilterCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C332F9C763A009EEFAD /* FilterCameraApp.swift */; };
 		B7414C362F9C763A009EEFAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C352F9C763A009EEFAD /* ContentView.swift */; };
 		B7414C382F9C763B009EEFAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7414C372F9C763B009EEFAD /* Assets.xcassets */; };
-		B7414C3B2F9C763B009EEFAD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7414C3A2F9C763B009EEFAD /* Preview Assets.xcassets */; };
 		B7414C4C2F9C7A68009EEFAD /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C4B2F9C7A68009EEFAD /* SplashView.swift */; };
 		B7414C4E2F9C7A8D009EEFAD /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C4D2F9C7A8D009EEFAD /* SplashViewModel.swift */; };
 		B7414C502F9C7ABF009EEFAD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7414C4F2F9C7ABF009EEFAD /* AppState.swift */; };
@@ -27,7 +26,6 @@
 		B7414C332F9C763A009EEFAD /* FilterCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCameraApp.swift; sourceTree = "<group>"; };
 		B7414C352F9C763A009EEFAD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B7414C372F9C763B009EEFAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B7414C3A2F9C763B009EEFAD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B7414C4B2F9C7A68009EEFAD /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		B7414C4D2F9C7A8D009EEFAD /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		B7414C4F2F9C7ABF009EEFAD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -76,17 +74,8 @@
 				B7414C432F9C7741009EEFAD /* Resources */,
 				B7414C352F9C763A009EEFAD /* ContentView.swift */,
 				B7414C372F9C763B009EEFAD /* Assets.xcassets */,
-				B7414C392F9C763B009EEFAD /* Preview Content */,
 			);
 			path = FilterCamera;
-			sourceTree = "<group>";
-		};
-		B7414C392F9C763B009EEFAD /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				B7414C3A2F9C763B009EEFAD /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		B7414C412F9C7726009EEFAD /* App */ = {
@@ -248,7 +237,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7414C3B2F9C763B009EEFAD /* Preview Assets.xcassets in Resources */,
 				B7414C382F9C763B009EEFAD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,7 +391,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FilterCamera/Preview Content\"";
 				DEVELOPMENT_TEAM = UK95S7YPT5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -432,7 +419,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FilterCamera/Preview Content\"";
 				DEVELOPMENT_TEAM = UK95S7YPT5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
