@@ -44,8 +44,7 @@ struct OnboardingView: View {
             }
             .padding(.horizontal, horizontalPadding)
             .padding(.bottom, bottomPadding)
-            let isNotPremium = UserDefaultHelper.get(for: .isPremium, default: false) == false
-            if isNotPremium {
+            if !StoreKitManager.shared.isPremium {
                 BannerAdView()
                     .frame(height: 80)
                     .padding(.bottom, 20)

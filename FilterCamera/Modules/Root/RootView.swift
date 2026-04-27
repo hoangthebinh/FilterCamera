@@ -24,7 +24,7 @@ struct RootView: View {
             PaywallView()
 
         case .camera:
-            Text("Camera")
+            CameraView()
 
         case .result:
             Text("Result")

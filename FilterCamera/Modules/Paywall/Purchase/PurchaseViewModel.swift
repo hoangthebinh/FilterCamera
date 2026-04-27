@@ -34,4 +34,12 @@ final class PurchaseViewModel: ObservableObject {
 
         return success
     }
+
+    func restore() async -> Bool {
+        isLoading = true
+        let success = await store.restore()
+        isLoading = false
+
+        return success
+    }
 }

@@ -20,7 +20,7 @@ final class PaywallViewModel: ObservableObject {
         Plan(
             title: "Premium",
             features: ["✅Remove Ads", "All Filters"],
-            info: "5.99$/Week, cancel anytime"
+            info: "Choose a subscription on the next screen"
         ),
         Plan(
             title: "Standard",

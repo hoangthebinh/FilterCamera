@@ -15,11 +15,10 @@ struct FilterCameraApp: App {
 
     init() {
         Task {
-            _ = await StoreKitManager.shared.updatePremiumStatus()
-        }
-        let isPremium = UserDefaultHelper.get(for: .isPremium, default: false)
-        guard !isPremium else { return }
-        Task {
+            await StoreKitManager.shared.updatePremiumStatus()
+
+            guard !StoreKitManager.shared.isPremium else { return }
+
             _ = await MobileAds.shared.start()
             InterstitialAdManager.shared.loadAd()
         }

@@ -83,6 +83,20 @@ struct PurchaseView: View {
                         .underline()
                 }
 
+                Button {
+                    Task {
+                        let restored = await viewModel.restore()
+                        if restored {
+                            appState.route = .camera
+                        }
+                    }
+                } label: {
+                    Text("Restore Purchases")
+                        .foregroundColor(.white.opacity(0.7))
+                        .underline()
+                }
+                .disabled(viewModel.isLoading)
+
                 Spacer()
             }
             .padding(.horizontal, 24)

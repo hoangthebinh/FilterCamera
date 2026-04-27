@@ -4,5 +4,14 @@
 <dict>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-3940256099942544~1458002511</string>
+    
+    <key>NSCameraUsageDescription</key>
+    <string>We need camera</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>We need microphone</string>
+
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>We need save video</string>
 </dict>
 </plist>

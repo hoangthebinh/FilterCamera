@@ -24,6 +24,10 @@
 		B794A7A62F9E247C009E3AAA /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7A52F9E2471009E3AAA /* PurchaseView.swift */; };
 		B794A7A92F9E276B009E3AAA /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7A82F9E2764009E3AAA /* PurchaseViewModel.swift */; };
 		B794A7AB2F9E2AC3009E3AAA /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B794A7AA2F9E2AC3009E3AAA /* Products.storekit */; };
+		B794A7AF2F9F94CF009E3AAA /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7AE2F9F94CF009E3AAA /* CameraView.swift */; };
+		B794A7B22F9F9622009E3AAA /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B12F9F961D009E3AAA /* CameraService.swift */; };
+		B794A7B42F9F969B009E3AAA /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B32F9F9690009E3AAA /* CameraPreview.swift */; };
+		B794A7B62F9F96C3009E3AAA /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B52F9F96C3009E3AAA /* CameraViewModel.swift */; };
 		B7D0D0E22F9DCD2900F3D4C0 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = B7D0D0E12F9DCD2900F3D4C0 /* GoogleMobileAds */; };
 		B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */; };
 		B7D0D0E92F9DDD0C00F3D4C0 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */; };
@@ -48,6 +52,10 @@
 		B794A7A52F9E2471009E3AAA /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		B794A7A82F9E2764009E3AAA /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
 		B794A7AA2F9E2AC3009E3AAA /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
+		B794A7AE2F9F94CF009E3AAA /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = FilterCamera/Modules/CameraView.swift; sourceTree = SOURCE_ROOT; };
+		B794A7B12F9F961D009E3AAA /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
+		B794A7B32F9F9690009E3AAA /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		B794A7B52F9F96C3009E3AAA /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewModel.swift; path = FilterCamera/Modules/CameraViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B7D0D0E32F9DD05300F3D4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 		B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
@@ -108,6 +116,7 @@
 		B7414C422F9C7738009EEFAD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B794A7B02F9F960F009E3AAA /* Camera */,
 				B794A7A22F9E22A0009E3AAA /* IAP */,
 				B7D0D0E72F9DDCF900F3D4C0 /* Extensions */,
 				B7D0D0E42F9DDC7D00F3D4C0 /* Ads */,
@@ -167,6 +176,8 @@
 		B7414C482F9C7792009EEFAD /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				B794A7AE2F9F94CF009E3AAA /* CameraView.swift */,
+				B794A7B52F9F96C3009E3AAA /* CameraViewModel.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -217,6 +228,15 @@
 				B794A7A82F9E2764009E3AAA /* PurchaseViewModel.swift */,
 			);
 			path = Purchase;
+			sourceTree = "<group>";
+		};
+		B794A7B02F9F960F009E3AAA /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				B794A7B32F9F9690009E3AAA /* CameraPreview.swift */,
+				B794A7B12F9F961D009E3AAA /* CameraService.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		B7D0D0E42F9DDC7D00F3D4C0 /* Ads */ = {
@@ -310,13 +330,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7414C362F9C763A009EEFAD /* ContentView.swift in Sources */,
+				B794A7B22F9F9622009E3AAA /* CameraService.swift in Sources */,
 				B7414C5A2F9CFC92009EEFAD /* UserDefaultHelper.swift in Sources */,
 				B7414C502F9C7ABF009EEFAD /* AppState.swift in Sources */,
+				B794A7AF2F9F94CF009E3AAA /* CameraView.swift in Sources */,
+				B794A7B42F9F969B009E3AAA /* CameraPreview.swift in Sources */,
 				B794A7A62F9E247C009E3AAA /* PurchaseView.swift in Sources */,
 				B7414C532F9C8810009EEFAD /* RootView.swift in Sources */,
 				B7414C572F9C9900009EEFAD /* OnboardingViewModel.swift in Sources */,
 				B7414C5E2F9D182E009EEFAD /* PaywallViewModel.swift in Sources */,
 				B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */,
+				B794A7B62F9F96C3009E3AAA /* CameraViewModel.swift in Sources */,
 				B7414C342F9C763A009EEFAD /* FilterCameraApp.swift in Sources */,
 				B7414C4C2F9C7A68009EEFAD /* SplashView.swift in Sources */,
 				B794A7A42F9E22B5009E3AAA /* StoreKitManager.swift in Sources */,

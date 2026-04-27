@@ -30,10 +30,14 @@ struct SplashView: View {
             viewModel.start()
         }
         .onReceive(viewModel.$route.compactMap { $0 }) { route in
-            pendingRoute = route
-            showAdIfReady()
-            let isPremium = UserDefaultHelper.get(for: .isPremium, default: false)
-            if isPremium {
+            if route == .camera {
+                appState.route = route
+            } else if adManager.isAdReady {
+                pendingRoute = route
+                showAdIfReady()
+            } else if adManager.loadState == .loading {
+                pendingRoute = route
+            } else {
                 appState.route = route
             }
         }
@@ -43,6 +47,14 @@ struct SplashView: View {
             }
 
             showAdIfReady()
+        }
+        .onReceive(adManager.$loadState.removeDuplicates()) { loadState in
+            guard loadState == .failed, let pendingRoute else {
+                return
+            }
+
+            appState.route = pendingRoute
+            self.pendingRoute = nil
         }
     }
 

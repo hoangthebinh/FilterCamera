@@ -95,11 +95,15 @@ final class StoreKitManager: ObservableObject {
     }
 
     // MARK: - Restore
-    func restore() async {
-        for await result in Transaction.currentEntitlements {
-            if case .verified(_) = result {
-                await updatePremiumStatus()
-            }
+    func restore() async -> Bool {
+        do {
+            try await AppStore.sync()
+            await updatePremiumStatus()
+            return isPremium
+        } catch {
+            print("❌ Restore error:", error)
+            await updatePremiumStatus()
+            return isPremium
         }
     }
 

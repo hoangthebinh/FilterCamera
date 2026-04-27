@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import QuartzCore
 
+@MainActor
 final class SplashViewModel: ObservableObject {
 
     @Published var progress: Double = 0
