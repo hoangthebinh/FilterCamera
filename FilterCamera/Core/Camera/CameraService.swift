@@ -498,12 +498,34 @@ private extension CameraService {
     }
 
     func makePixelBuffer(from image: CIImage, using pool: CVPixelBufferPool) -> CVPixelBuffer? {
+
         var pixelBuffer: CVPixelBuffer?
         CVPixelBufferPoolCreatePixelBuffer(nil, pool, &pixelBuffer)
 
         guard let pixelBuffer else { return nil }
 
-        ciContext.render(image, to: pixelBuffer)
+        let targetWidth = CVPixelBufferGetWidth(pixelBuffer)
+        let targetHeight = CVPixelBufferGetHeight(pixelBuffer)
+
+        let imageWidth = image.extent.width
+        let imageHeight = image.extent.height
+
+        // 🔥 tính scale giữ tỉ lệ
+        let scale = min(
+            CGFloat(targetWidth) / imageWidth,
+            CGFloat(targetHeight) / imageHeight
+        )
+
+        let scaled = image.transformed(by: CGAffineTransform(scaleX: scale, y: scale))
+
+        // 🔥 center image (không crop)
+        let x = (CGFloat(targetWidth) - scaled.extent.width) / 2
+        let y = (CGFloat(targetHeight) - scaled.extent.height) / 2
+
+        let centered = scaled.transformed(by: CGAffineTransform(translationX: x, y: y))
+
+        ciContext.render(centered, to: pixelBuffer)
+
         return pixelBuffer
     }
 
