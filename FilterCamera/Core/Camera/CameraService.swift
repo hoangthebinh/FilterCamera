@@ -61,7 +61,9 @@ final class CameraService: NSObject {
     private(set) var isRecording = false
     private var startTime: CMTime?
     private var duration: Int = 15
-
+    private var overlayPosition: CGPoint = .zero
+    private var overlaySize: CGFloat = 50
+    
     var onFinish: ((URL) -> Void)?
     var onPreviewBuffer: ((CMSampleBuffer) -> Void)?
     var onRecordingStateChanged: ((Bool) -> Void)?
@@ -168,7 +170,8 @@ private extension CameraService {
             self.session.startRunning()
             self.isSessionRunning = true
 
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.onSetupCompleted?()
             }
         }
@@ -236,13 +239,15 @@ private extension CameraService {
             message = error.localizedDescription
         }
 
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.onSetupError?(message)
         }
     }
 
     func notifyLibrarySaveError(_ message: String) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.onLibrarySaveError?(message)
         }
     }
@@ -277,19 +282,18 @@ private extension CameraService {
 extension CameraService {
 
     func startRecording(duration: Int) {
-        sessionQueue.async {
-            guard self.isSessionConfigured, self.isSessionRunning, !self.isRecording else { return }
+        sessionQueue.async { [weak self] in
+            guard let self = self, self.isSessionConfigured, self.isSessionRunning, !self.isRecording else { return }
 
             self.duration = duration
             self.startTime = nil
             self.hasStartedWritingSession = false
-
             self.generateRandomFilter()
             guard self.setupWriter() else {
                 self.notifySetupError(SetupError.writerUnavailable)
                 return
             }
-
+            
             self.setRecordingState(true)
         }
     }
@@ -312,6 +316,10 @@ private extension CameraService {
         videoInput?.markAsFinished()
         audioInput?.markAsFinished()
 
+        // 🔥 RESET FILTER
+        currentFilter = nil
+        currentOverlay = nil
+
         let currentWriter = writer
         let outputURL = currentWriter?.outputURL
 
@@ -320,7 +328,8 @@ private extension CameraService {
             self.resetWriter()
 
             guard let outputURL else { return }
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.onFinish?(outputURL)
             }
 
@@ -333,7 +342,8 @@ private extension CameraService {
     func setRecordingState(_ isRecording: Bool) {
         self.isRecording = isRecording
 
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.onRecordingStateChanged?(isRecording)
         }
     }
@@ -415,19 +425,25 @@ extension CameraService {
     }
     
     func generateRandomFilter() {
-
+        overlaySize = CGFloat.random(in: 150...300)
+        overlayPosition = CGPoint(
+            x: CGFloat.random(in: 0...600),
+            y: CGFloat.random(in: 0...1000)
+        )
+        
         let overlays = [
             loadOverlay(named: "filter_image_1"),
-            loadOverlay(named: "filter_image_1"),
-            loadOverlay(named: "filter_image_1"),
-            nil
+            loadOverlay(named: "filter_image_2"),
+            loadOverlay(named: "filter_image_3"),
+            loadOverlay(named: "filter_image_4"),
+            loadOverlay(named: "filter_image_5"),
+            loadOverlay(named: "filter_image_6")
         ]
 
         let colorFilters: [CIFilter?] = [
             CIFilter.sepiaTone(),
             CIFilter.photoEffectNoir(),
             CIFilter.colorInvert(),
-            nil
         ]
 
         currentFilter = colorFilters.randomElement() ?? nil
@@ -446,16 +462,20 @@ extension CameraService {
 
         // 2. Overlay image
         if let overlay = currentOverlay {
+            
+            let scaleX = overlaySize / overlay.extent.width
+            let scaleY = overlaySize / overlay.extent.height
 
-            let resizedOverlay = overlay
-                .transformed(by: CGAffineTransform(
-                    scaleX: output.extent.width / overlay.extent.width,
-                    y: output.extent.height / overlay.extent.height
-                ))
+            let resizedOverlay = overlay.transformed(
+                by: CGAffineTransform(scaleX: scaleX, y: scaleY)
+            )
 
-            // Blend mode
-            let blend = CIFilter.overlayBlendMode()
-            blend.inputImage = resizedOverlay
+            let positionedOverlay = resizedOverlay.transformed(
+                by: CGAffineTransform(translationX: overlayPosition.x, y: overlayPosition.y)
+            )
+
+            let blend = CIFilter.sourceOverCompositing()
+            blend.inputImage = positionedOverlay
             blend.backgroundImage = output
 
             output = blend.outputImage ?? output
@@ -506,7 +526,8 @@ private extension CameraService {
         let processedImage = preparedImage(from: pixelBuffer)
 
         if let previewSampleBuffer = makePreviewSampleBuffer(from: processedImage, presentationTime: time) {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.onPreviewBuffer?(previewSampleBuffer)
             }
         }
