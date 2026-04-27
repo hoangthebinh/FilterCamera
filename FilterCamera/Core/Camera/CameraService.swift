@@ -9,6 +9,7 @@ import AVFoundation
 import CoreImage
 import CoreImage.CIFilterBuiltins
 import Photos
+import UIKit
 
 final class CameraService: NSObject {
 
@@ -55,7 +56,8 @@ final class CameraService: NSObject {
     private var isSessionConfigured = false
     private var isSessionRunning = false
     private var preferredCameraPosition: AVCaptureDevice.Position = .front
-
+    private var currentOverlay: CIImage?
+    
     private(set) var isRecording = false
     private var startTime: CMTime?
     private var duration: Int = 15
@@ -402,21 +404,64 @@ private extension CameraService {
 }
 
 extension CameraService {
+    struct CameraFilter {
+        let colorFilter: CIFilter?
+        let overlay: CIImage?
+    }
+    
+    func loadOverlay(named name: String) -> CIImage? {
+        guard let uiImage = UIImage(named: name) else { return nil }
+        return CIImage(image: uiImage)
+    }
+    
+    func generateRandomFilter() {
 
-    private func generateRandomFilter() {
-        let filters: [CIFilter] = [
-            CIFilter.sepiaTone(),
-            CIFilter.photoEffectNoir(),
-            CIFilter.colorInvert()
+        let overlays = [
+            loadOverlay(named: "filter_image_1"),
+            loadOverlay(named: "filter_image_1"),
+            loadOverlay(named: "filter_image_1"),
+            nil
         ]
 
-        currentFilter = filters.randomElement()
+        let colorFilters: [CIFilter?] = [
+            CIFilter.sepiaTone(),
+            CIFilter.photoEffectNoir(),
+            CIFilter.colorInvert(),
+            nil
+        ]
+
+        currentFilter = colorFilters.randomElement() ?? nil
+        currentOverlay = overlays.randomElement() ?? nil
     }
 
     private func applyFilter(to image: CIImage) -> CIImage {
-        guard let filter = currentFilter else { return image }
-        filter.setValue(image, forKey: kCIInputImageKey)
-        return filter.outputImage ?? image
+
+        var output = image
+
+        // 1. Color filter
+        if let filter = currentFilter {
+            filter.setValue(output, forKey: kCIInputImageKey)
+            output = filter.outputImage ?? output
+        }
+
+        // 2. Overlay image
+        if let overlay = currentOverlay {
+
+            let resizedOverlay = overlay
+                .transformed(by: CGAffineTransform(
+                    scaleX: output.extent.width / overlay.extent.width,
+                    y: output.extent.height / overlay.extent.height
+                ))
+
+            // Blend mode
+            let blend = CIFilter.overlayBlendMode()
+            blend.inputImage = resizedOverlay
+            blend.backgroundImage = output
+
+            output = blend.outputImage ?? output
+        }
+
+        return output
     }
 
     private func preparedImage(from pixelBuffer: CVPixelBuffer) -> CIImage {
