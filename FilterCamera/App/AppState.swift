@@ -11,12 +11,11 @@ final class AppState: ObservableObject {
     @Published var route: Route = .splash
 }
 
-enum Route {
+enum Route: Equatable {
     case splash
     case onboarding
     case paywall
     case purchase
     case camera
-    case result
+    case result(url: URL)
 }
-

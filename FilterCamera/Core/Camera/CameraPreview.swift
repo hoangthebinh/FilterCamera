@@ -10,7 +10,6 @@ import SwiftUI
 import UIKit
 
 struct CameraPreview: UIViewRepresentable {
-
     let service: CameraService
 
     func makeUIView(context: Context) -> PreviewView {

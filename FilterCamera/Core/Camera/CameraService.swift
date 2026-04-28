@@ -68,12 +68,7 @@ final class CameraService: NSObject {
     var onPreviewBuffer: ((CMSampleBuffer) -> Void)?
     var onRecordingStateChanged: ((Bool) -> Void)?
     var onSetupError: ((String) -> Void)?
-    var onLibrarySaveError: ((String) -> Void)?
     var onSetupCompleted: (() -> Void)?
-
-    deinit {
-        stopSession()
-    }
 }
 
 extension CameraService {
@@ -244,39 +239,6 @@ private extension CameraService {
             self.onSetupError?(message)
         }
     }
-
-    func notifyLibrarySaveError(_ message: String) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.onLibrarySaveError?(message)
-        }
-    }
-
-    func saveVideoToPhotoLibrary(from url: URL) async {
-        let authorizationStatus = await requestPhotoLibraryAccess()
-        guard authorizationStatus == .authorized || authorizationStatus == .limited else {
-            notifyLibrarySaveError("Photo library access was denied.")
-            return
-        }
-
-        do {
-            try await PHPhotoLibrary.shared().performChanges {
-                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
-            }
-        } catch {
-            notifyLibrarySaveError("Failed to save video to Photo Library.")
-        }
-    }
-
-    func requestPhotoLibraryAccess() async -> PHAuthorizationStatus {
-        let currentStatus = PHPhotoLibrary.authorizationStatus(for: .addOnly)
-        switch currentStatus {
-        case .notDetermined:
-            return await PHPhotoLibrary.requestAuthorization(for: .addOnly)
-        default:
-            return currentStatus
-        }
-    }
 }
 
 extension CameraService {
@@ -299,8 +261,8 @@ extension CameraService {
     }
 
     func stopRecording() {
-        sessionQueue.async {
-            self.stopRecordingIfNeeded()
+        sessionQueue.async { [weak self] in
+            self?.stopRecordingIfNeeded()
         }
     }
 }
@@ -331,10 +293,6 @@ private extension CameraService {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.onFinish?(outputURL)
-            }
-
-            Task {
-                await self.saveVideoToPhotoLibrary(from: outputURL)
             }
         }
     }
@@ -616,7 +574,7 @@ private extension CameraService {
                                          &pixelBuffer)
         guard status == kCVReturnSuccess, let pixelBuffer else { return nil }
 
-        ciContext.render(image, to: pixelBuffer)
+        render(image: image, to: pixelBuffer)
 
         var formatDescription: CMFormatDescription?
         guard CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault,
@@ -639,5 +597,29 @@ private extension CameraService {
         }
 
         return sampleBuffer
+    }
+    
+    func render(image: CIImage, to pixelBuffer: CVPixelBuffer) {
+
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+
+        let scale = min(
+            CGFloat(width) / image.extent.width,
+            CGFloat(height) / image.extent.height
+        )
+
+        let scaled = image.transformed(
+            by: CGAffineTransform(scaleX: scale, y: scale)
+        )
+
+        let x = (CGFloat(width) - scaled.extent.width) / 2
+        let y = (CGFloat(height) - scaled.extent.height) / 2
+
+        let final = scaled.transformed(
+            by: CGAffineTransform(translationX: x, y: y)
+        )
+
+        ciContext.render(final, to: pixelBuffer)
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CameraView: View {
-
+    @EnvironmentObject var appState: AppState
     @State private var selectedDuration: Int = 15
 
     @StateObject private var store = StoreKitManager.shared
@@ -19,23 +19,21 @@ struct CameraView: View {
     var body: some View {
         ZStack {
             CameraPreview(service: viewModel.service)
-                .ignoresSafeArea()
+                .ignoresSafeArea(edges: .bottom)
 
             VStack {
+                let isNotPremium = UserDefaultHelper.get(for: .isPremium, default: false) == false
+                if isNotPremium {
+                    BannerAdView()
+                        .frame(height: 50)
+                }
                 HStack(alignment: .top) {
-                    if !store.isPremium {
-                        BannerAdPlaceholder()
-                    }
-
                     Spacer()
 
                     switchCameraButton
                 }
                 .padding(.top, 8)
-
-                if store.isPremium {
-                    Spacer()
-                }
+                .padding(.trailing, 24)
 
                 Spacer()
 
@@ -75,6 +73,10 @@ struct CameraView: View {
         .onDisappear {
             viewModel.stop()
             viewModel.service.stopSession()
+        }
+        .onReceive(viewModel.$recordedURL.removeDuplicates()) { url in
+            guard let url = url, !viewModel.isRecording else { return }
+            appState.route = .result(url: url)
         }
     }
 }

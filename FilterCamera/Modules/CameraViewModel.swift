@@ -40,10 +40,6 @@ final class CameraViewModel: ObservableObject {
             self?.alertMessage = message
         }
 
-        service.onLibrarySaveError = { [weak self] message in
-            self?.alertMessage = message
-        }
-
         service.onSetupCompleted = { [weak self] in
             self?.isSessionReady = true
         }

@@ -84,6 +84,7 @@ struct PaywallView: View {
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
             .padding()
+            .multilineTextAlignment(.center)
             .cornerRadius(24)
     }
 

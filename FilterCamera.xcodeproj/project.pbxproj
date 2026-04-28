@@ -28,6 +28,8 @@
 		B794A7B22F9F9622009E3AAA /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B12F9F961D009E3AAA /* CameraService.swift */; };
 		B794A7B42F9F969B009E3AAA /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B32F9F9690009E3AAA /* CameraPreview.swift */; };
 		B794A7B62F9F96C3009E3AAA /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B52F9F96C3009E3AAA /* CameraViewModel.swift */; };
+		B794A7B82FA07B9A009E3AAA /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B72FA07B9A009E3AAA /* ResultView.swift */; };
+		B794A7BA2FA08372009E3AAA /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B794A7B92FA08372009E3AAA /* ResultViewModel.swift */; };
 		B7D0D0E22F9DCD2900F3D4C0 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = B7D0D0E12F9DCD2900F3D4C0 /* GoogleMobileAds */; };
 		B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */; };
 		B7D0D0E92F9DDD0C00F3D4C0 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */; };
@@ -56,6 +58,8 @@
 		B794A7B12F9F961D009E3AAA /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		B794A7B32F9F9690009E3AAA /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		B794A7B52F9F96C3009E3AAA /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewModel.swift; path = FilterCamera/Modules/CameraViewModel.swift; sourceTree = SOURCE_ROOT; };
+		B794A7B72FA07B9A009E3AAA /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResultView.swift; path = FilterCamera/Modules/ResultView.swift; sourceTree = SOURCE_ROOT; };
+		B794A7B92FA08372009E3AAA /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResultViewModel.swift; path = FilterCamera/Modules/ResultViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B7D0D0E32F9DD05300F3D4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D0D0E52F9DDC8500F3D4C0 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 		B7D0D0E82F9DDD0000F3D4C0 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 		B7414C492F9C7799009EEFAD /* Result */ = {
 			isa = PBXGroup;
 			children = (
+				B794A7B72FA07B9A009E3AAA /* ResultView.swift */,
+				B794A7B92FA08372009E3AAA /* ResultViewModel.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -337,11 +343,13 @@
 				B794A7B42F9F969B009E3AAA /* CameraPreview.swift in Sources */,
 				B794A7A62F9E247C009E3AAA /* PurchaseView.swift in Sources */,
 				B7414C532F9C8810009EEFAD /* RootView.swift in Sources */,
+				B794A7BA2FA08372009E3AAA /* ResultViewModel.swift in Sources */,
 				B7414C572F9C9900009EEFAD /* OnboardingViewModel.swift in Sources */,
 				B7414C5E2F9D182E009EEFAD /* PaywallViewModel.swift in Sources */,
 				B7D0D0E62F9DDC8B00F3D4C0 /* InterstitialAdManager.swift in Sources */,
 				B794A7B62F9F96C3009E3AAA /* CameraViewModel.swift in Sources */,
 				B7414C342F9C763A009EEFAD /* FilterCameraApp.swift in Sources */,
+				B794A7B82FA07B9A009E3AAA /* ResultView.swift in Sources */,
 				B7414C4C2F9C7A68009EEFAD /* SplashView.swift in Sources */,
 				B794A7A42F9E22B5009E3AAA /* StoreKitManager.swift in Sources */,
 				B794A7A92F9E276B009E3AAA /* PurchaseViewModel.swift in Sources */,
@@ -480,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UK95S7YPT5;
@@ -509,6 +518,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UK95S7YPT5;
